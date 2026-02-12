@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unlock 💌</title>
+  <title>Unlock 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="page">
-    <h2>Enter password to unlock 💌</h2>
-    <p class="hint">Hint: what I call you 😌</p>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="unlock()">Unlock</button>
-  </div>
+<div class="floating-hearts"></div>
 
-  <script src="script.js"></script>
+<audio id="bgMusic" autoplay loop></audio>
+
+<div class="page center fade-in">
+  <h1>Enter Password to Unlock 💌</h1>
+  <p class="hint">Hint: what I call you 😌</p>
+
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="error"></p>
+</div>
+
+<script src="script.js"></script>
 </body>
-</html>
+                  </html>
+                  

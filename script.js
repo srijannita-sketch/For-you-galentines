@@ -1,13 +1,20 @@
 // PASSWORD
 function unlock() {
-  const passwords = ["Ritu", "Anu", "Ana", "Sagnika", "Shrily", "Angella", "Shoharji", "Jabeda"];
-  const entered = document.getElementById("password").value.toLowerCase();
+  const passwords = ["ritu", "anu", "ana", "sagnika", "shrily", "angella", "shoharji", "jabeda"];
+
+  const entered = document.getElementById("password").value
+    .trim()
+    .toLowerCase();
 
   if (passwords.includes(entered)) {
     localStorage.setItem("friendName", entered);
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("mainContent").classList.remove("hidden");
-    document.getElementById("bgMusic").play();
+
+    const music = document.getElementById("bgMusic");
+    if (music) {
+      music.play().catch(() => {});
+    }
   } else {
     alert("Wrong password 💔 Try again!");
   }

@@ -1,60 +1,152 @@
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
-  color: #333;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
   overflow-x: hidden;
+  color: white;
+  text-align: center;
 }
 
 .page {
-  margin-top: 100px;
-  padding: 20px;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
 }
 
-h2 {
-  font-size: 28px;
+.center {
+  margin-top: 100px;
 }
 
 button {
-  margin: 15px;
-  padding: 10px 20px;
+  padding: 12px 25px;
   border-radius: 25px;
   border: none;
-  background-color: #ff66b2;
-  color: white;
-  font-size: 16px;
+  background: white;
+  color: #e75480;
+  font-weight: bold;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 button:hover {
-  background-color: #ff3385;
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-input {
-  padding: 10px;
+.fade-in {
+  animation: fade 1.5s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Floating hearts */
+.floating-hearts span {
+  position: absolute;
+  bottom: 0;
+  animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0.7; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Heart cards */
+.hearts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.heart {
+  position: relative;
+  width: 180px;
+  height: 160px;
+  background-color: #ff4d88;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: pop 0.8s ease forwards;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 160px;
+  background-color: #ff4d88;
+  border-radius: 50%;
+}
+
+.heart::before { top: -90px; left: 0; }
+.heart::after { left: 90px; top: 0; }
+
+@keyframes pop {
+  from { transform: rotate(-45deg) scale(0); }
+  to { transform: rotate(-45deg) scale(1); }
+}
+
+/* Sparkle */
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  animation: sparkleFade 0.8s linear forwards;
+}
+
+@keyframes sparkleFade {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Love meter */
+.love-meter {
+  width: 80%;
+  height: 20px;
+  background: rgba(255,255,255,0.3);
   border-radius: 20px;
-  border: 1px solid #ff99cc;
-  margin-top: 15px;
+  margin: 20px auto;
 }
 
-.hidden {
-  display: none;
+#loveFill {
+  height: 100%;
+  width: 0%;
+  background: #ff0066;
+  border-radius: 20px;
+  transition: width 2s ease;
+  }
+
+.big-yes {
+  font-size: 50px;
+  animation: glow 1.5s ease-in-out infinite alternate;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
+.date-confirmed {
+  font-size: 32px;
+  margin-bottom: 20px;
 }
 
-li {
-  margin: 12px 0;
+.song-line {
+  font-style: italic;
   font-size: 18px;
+  margin-bottom: 30px;
 }
 
-.hint {
-  opacity: 0.7;
+.date-box {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  margin: 20px auto;
+  backdrop-filter: blur(10px);
 }
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 25px #ff4d88; }
+  }

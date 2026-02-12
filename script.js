@@ -8,15 +8,24 @@ function unlock() {
 
   if (passwords.includes(entered)) {
     localStorage.setItem("friendName", entered);
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("proposal").classList.remove("hidden");
+    window.location.href = "reasons.html";
   } else {
     alert("Wrong password 💔 Try again!");
   }
 }
 
 
-// NO BUTTON RUNS AWAY
+// PAGE NAVIGATION
+function goToProposal() {
+  window.location.href = "proposal.html";
+}
+
+function goToFinal() {
+  window.location.href = "final.html";
+}
+
+
+// NO BUTTON RUNS
 function moveNo() {
   const btn = document.getElementById("noBtn");
   btn.style.position = "absolute";
@@ -25,27 +34,14 @@ function moveNo() {
 }
 
 
-// NAVIGATION
-function goToReasons() {
-  window.location.href = "reasons.html";
-}
-
-function goToFinal() {
-  window.location.href = "final.html";
-}
-
-
 // FINAL CELEBRATION
 function celebrate() {
-
-  const name = localStorage.getItem("friendName");
 
   const music = document.getElementById("bgMusic");
   if (music) {
     music.play().catch(err => console.log(err));
   }
 
-  // CONFETTI BLAST
   var duration = 3 * 1000;
   var end = Date.now() + duration;
 
@@ -86,5 +82,4 @@ function celebrate() {
     <p>With love,<br>
     <strong>Srijannita 💌</strong></p>
   `;
-    }
-
+  }

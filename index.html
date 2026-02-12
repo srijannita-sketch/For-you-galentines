@@ -3,35 +3,26 @@
 <head>
   <title>For My Galentine 💗</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
   <!-- PASSWORD SCREEN -->
   <div id="lockScreen">
-    <h2>Enter your name to unlock 💌</h2>
-    <input type="text" id="password" placeholder="Your name">
+    <h2>Enter password to unlock 💌</h2>
+    <p class="hint">Hint: what I call you 😌</p>
+    <input type="password" id="password" placeholder="Enter password">
     <button onclick="unlock()">Unlock</button>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="mainContent" class="hidden">
-
-    <div id="proposal">
-      <h2>Will you be my galentine? 💗</h2>
-      <button onclick="celebrate()">Yes ofc 💕</button>
-      <button id="noBtn" onmouseover="moveNo()">No</button>
-    </div>
-
-    <div id="response"></div>
-
+  <!-- PROPOSAL -->
+  <div id="proposal" class="hidden">
+    <h2>Will you be my galentine? 💗</h2>
+    <button onclick="goToReasons()">Yes ofc 💕</button>
+    <button id="noBtn" onmouseover="moveNo()">No</button>
   </div>
-
-  <!-- MUSIC -->
-  <audio id="bgMusic">
-    <source src="Lauv%20-%20I%20Like%20Me%20Better%20(Lyrics)%20i%20like%20me%20better%20when%20i%27m%20with%20you.mp3" type="audio/mpeg">
-  </audio>
 
   <script src="script.js"></script>
 </body>
-</html>
+      </html>
+
+

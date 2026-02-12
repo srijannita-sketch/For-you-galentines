@@ -9,7 +9,7 @@ function unlock() {
   if (passwords.includes(entered)) {
     localStorage.setItem("friendName", entered);
     document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("mainContent").classList.remove("hidden");
+    document.getElementById("proposal").classList.remove("hidden");
   } else {
     alert("Wrong password 💔 Try again!");
   }
@@ -25,18 +25,23 @@ function moveNo() {
 }
 
 
-// CELEBRATION
-function celebrate() {
+// NAVIGATION
+function goToReasons() {
+  window.location.href = "reasons.html";
+}
 
-  // Hide proposal section
-  document.getElementById("proposal").style.display = "none";
+function goToFinal() {
+  window.location.href = "final.html";
+}
+
+
+// FINAL CELEBRATION
+function celebrate() {
 
   const name = localStorage.getItem("friendName");
 
-  // PLAY MUSIC
   const music = document.getElementById("bgMusic");
   if (music) {
-    music.currentTime = 0;
     music.play().catch(err => console.log(err));
   }
 
@@ -63,8 +68,7 @@ function celebrate() {
     }
   })();
 
-  // FINAL MESSAGE
-  document.getElementById("response").innerHTML = `
+  document.getElementById("finalMessage").innerHTML = `
     <h2>YAYY!! 🥳💖 Date Confirmed!</h2>
 
     <p><strong>Where:</strong> at your favourite place 💞</p>
@@ -75,14 +79,12 @@ function celebrate() {
 
     <br>
 
-    <p style="font-style: italic; opacity: 0.8;">
-      (Don't overthink it... just know I mean it.)
-    </p>
+    <p style="opacity:0.8;">(Don't overthink it... just know I mean it.)</p>
 
     <br>
 
     <p>With love,<br>
     <strong>Srijannita 💌</strong></p>
   `;
-}
-  
+    }
+

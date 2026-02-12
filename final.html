@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Final Question 💘</title>
+  <title>Date Confirmed 💖</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-<body>
+<body onload="celebrate()">
 
-<div class="hearts-container"></div>
-
-<div class="container">
-  <h2>So… will you be my Galentine? 💕</h2>
-
-  <div class="buttons">
-    <button class="yes" onclick="celebrate()">YES, obviously! 💖</button>
-    <button class="no" onclick="shrinkNo(this)">No</button>
+  <div class="page">
+    <div id="finalMessage"></div>
   </div>
 
-  <div id="response" class="response"></div>
-</div>
+  <audio id="bgMusic">
+    <source src="Lauv%20-%20I%20Like%20Me%20Better%20(Lyrics)%20i%20like%20me%20better%20when%20i%27m%20with%20you.mp3" type="audio/mpeg">
+  </audio>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

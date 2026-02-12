@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Important Question 💗</title>
+  <title>Galentine 💗</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="page">
-    <h2>Will you be my galentine? 💗</h2>
+<div class="floating-hearts"></div>
+<audio id="bgMusic" autoplay loop></audio>
 
-    <button onclick="goToFinal()">Yes ofc 💕</button>
-    <button id="noBtn" onmouseover="moveNo()">No</button>
+<div class="page center fade-in">
+  <h1>Will you be my Galentine? 💖</h1>
+
+  <div class="love-meter">
+    <div id="loveFill"></div>
   </div>
 
-  <script src="script.js"></script>
+  <div class="buttons">
+    <button onclick="goToFinal()">Yes 💕</button>
+    <button onclick="moveNo(this)">No 🙈</button>
+  </div>
+
+  <p id="countdown"></p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

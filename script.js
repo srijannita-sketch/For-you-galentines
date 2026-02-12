@@ -1,9 +1,10 @@
 // PASSWORD
 function unlock() {
-  const correctPassword = "jaaneman";
-  const entered = document.getElementById("password").value;
+  const passwords = ["Ritu", "Anu", "Ana", "Sagnika", "Shrily", "Angella", "Shoharji", "Jabeda"];
+  const entered = document.getElementById("password").value.toLowerCase();
 
-  if (entered === correctPassword) {
+  if (passwords.includes(entered)) {
+    localStorage.setItem("friendName", entered);
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("mainContent").classList.remove("hidden");
     document.getElementById("bgMusic").play();
@@ -49,15 +50,34 @@ function shrinkNo(btn) {
 
 // Celebrate
 function celebrate() {
-  confetti({
-    particleCount: 150,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
+  const name = localStorage.getItem("friendName");
+
+  // BIG CONFETTI BLAST
+  var duration = 3 * 1000;
+  var end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 8,
+      angle: 60,
+      spread: 100,
+      origin: { x: 0 }
+    });
+    confetti({
+      particleCount: 8,
+      angle: 120,
+      spread: 100,
+      origin: { x: 1 }
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
 
   document.getElementById("response").innerHTML = `
     <h3>YAYYY 🥳💖 Date Confirmed!</h3>
-    <p><strong>Where :</strong> At your favourite place 💕</p>
+    <p><strong>Where :</strong> At your favourite place, ${name} 💕</p>
     <p><strong>When :</strong> Whenever you want jaaneman🫦</p>
     <p>I like me better when I am with you💋</p>
     <p style="font-style: italic; opacity: 0.8;">
@@ -66,4 +86,4 @@ function celebrate() {
     <br>
     <p>With love,<br><strong>Srijannita 💌</strong></p>
   `;
-             }
+}

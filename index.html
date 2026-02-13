@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Unlock 💖</title>
+  <title>Secret 💌</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="fade-in">
+
+  <div class="floating-hearts"></div>
 
 <div class="floating-hearts"></div>
+<audio id="bgMusic" loop>
+  <source src="Lauv - I Like Me Better (Lyrics) i like me better when i'm with you.mp3" type="audio/mpeg">
+</audio>
 
-<audio id="bgMusic" autoplay loop></audio>
+<div class="page center">
+  <h1>🔐 Secret Access Required</h1>
 
-<div class="page center fade-in">
-  <h1>Enter Password to Unlock 💌</h1>
-  <p class="hint">Hint: what I call you 😌</p>
+  <p class="romantic-text">
+    Type the special name I call you to unlock 💕
+  </p>
 
-  <input type="password" id="password" placeholder="Enter password">
-  <button onclick="checkPassword()">Unlock</button>
-  <p id="error"></p>
+  <input type="password" id="password" placeholder="Enter the secret name">
+  <button onclick="checkPassword()">Unlock 💖</button>
+
+  <p id="error" class="error-text"></p>
 </div>
 
 <script src="script.js"></script>
 </body>
-                  </html>
-                  
+  </html>

@@ -1,124 +1,123 @@
-// AUTO DETECT MUSIC FILE
-const music = document.getElementById("bgMusic");
-if (music) {
-  const files = ["music.mp3", "song.mp3", "audio.mp3"];
-  files.forEach(file => {
-    const source = document.createElement("source");
-    source.src = file;
-    source.type = "audio/mpeg";
-    music.appendChild(source);
-  });
-
-  document.addEventListener("click", () => {
-    music.play();
-  }, { once: true });
+function smoothRedirect(page) {
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = page;
+  }, 600);
 }
 
-// Password
 function checkPassword() {
-  const correctPassword = "shundori";
-  const entered = document.getElementById("password").value;
+  const input = document.getElementById("password").value.trim().toLowerCase();
+  const error = document.getElementById("error");
 
-  if (entered.toLowerCase() === correctPassword) {
-    window.location.href = "reasons.html";
+  const validPasswords = [
+    "shrily","angella","shoharji","rits","ritu","ana","anu","sagnika","jabeda"
+  ];
+
+  if (validPasswords.includes(input)) {
+    createFloatingHearts();
+    setTimeout(() => smoothRedirect("reasons.html"), 1500);
   } else {
-    document.getElementById("error").innerText = "Wrong password 😭 try again";
+    error.innerText = "Hmm that's not what I call you💔 Try again!";
   }
 }
 
 function goToProposal() {
-  window.location.href = "proposal.html";
+  smoothRedirect("proposal.html");
 }
 
-function goToFinal() {
-  launchConfetti();
+/* YES FLOW */
+function sayYes() {
+  const music = document.getElementById("bgMusic");
+  const proposal = document.getElementById("proposalSection");
+  const yay = document.getElementById("yaySection");
+  const final = document.getElementById("finalSection");
+
+  music.play();
+
+  proposal.classList.add("hidden");
+  yay.classList.remove("hidden");
+
+  startConfetti();
+
   setTimeout(() => {
-    window.location.href = "final.html";
-  }, 1500);
+    stopConfetti();
+    yay.classList.add("hidden");
+    final.classList.remove("hidden");
+  }, 3000);
 }
 
-function moveNo(btn) {
-  btn.style.position = "absolute";
-  btn.style.top = Math.random() * 80 + "%";
-  btn.style.left = Math.random() * 80 + "%";
+function moveNo(button) {
+  button.style.position = "absolute";
+  button.style.top = Math.random() * 400 + "px";
+  button.style.left = Math.random() * 400 + "px";
 }
 
-// Floating hearts
-const container = document.querySelector(".floating-hearts");
-if (container) {
-  setInterval(() => {
-    const heart = document.createElement("span");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    container.appendChild(heart);
-    setTimeout(() => heart.remove(), 10000);
-  }, 500);
-}
+/* CONFETTI */
+let confettiAnimation;
 
-// Sparkle cursor
-document.addEventListener("mousemove", e => {
-  const sparkle = document.createElement("div");
-  sparkle.className = "sparkle";
-  sparkle.innerHTML = "✨";
-  sparkle.style.left = e.pageX + "px";
-  sparkle.style.top = e.pageY + "px";
-  document.body.appendChild(sparkle);
-  setTimeout(() => sparkle.remove(), 800);
-});
+function startConfetti() {
+  const canvas = document.getElementById("confetti");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-// Confetti
-function launchConfetti() {
-  for (let i = 0; i < 100; i++) {
-    const confetti = document.createElement("div");
-    confetti.style.position = "fixed";
-    confetti.style.width = "8px";
-    confetti.style.height = "8px";
-    confetti.style.background = `hsl(${Math.random()*360},100%,70%)`;
-    confetti.style.top = "50%";
-    confetti.style.left = "50%";
-    document.body.appendChild(confetti);
+  const pieces = Array.from({length:150}).map(() => ({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*6+2,
+    color: `hsl(${Math.random()*360},100%,70%)`
+  }));
 
-    const angle = Math.random()*2*Math.PI;
-    const distance = Math.random()*300;
-
-    confetti.animate([
-      { transform: "translate(-50%,-50%)" },
-      { transform: `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)` }
-    ], { duration: 1000 });
-
-    setTimeout(() => confetti.remove(), 1000);
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.y += 3;
+      if (p.y > canvas.height) p.y = 0;
+    });
+    confettiAnimation = requestAnimationFrame(draw);
   }
+  draw();
 }
 
-// Love meter
-const loveFill = document.getElementById("loveFill");
-if (loveFill) {
+function stopConfetti() {
+  cancelAnimationFrame(confettiAnimation);
+}
+
+/* RANDOM HEART FLOAT AFTER UNLOCK */
+function createFloatingHearts() {
+  for (let i=0;i<20;i++) {
+    const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.className = "random-heart";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*3+2)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),4000);
+  }
+             }
+/* BACKGROUND FLOATING HEARTS */
+
+function createBackgroundHeart() {
+  const heart = document.createElement("div");
+  heart.className = "bg-heart";
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+  heart.style.animationDuration = (Math.random() * 6 + 6) + "s";
+  heart.style.animationDelay = Math.random() * 5 + "s";
+
+  document.querySelector(".floating-hearts").appendChild(heart);
+
   setTimeout(() => {
-    loveFill.style.width = "100%";
-  }, 500);
+    heart.remove();
+  }, 12000);
 }
 
-// Countdown
-const countdown = document.getElementById("countdown");
-if (countdown) {
-  let time = 10;
-  const timer = setInterval(() => {
-    countdown.innerText = "Deciding in " + time + "… 💓";
-    time--;
-    if (time < 0) clearInterval(timer);
-  }, 1000);
-}
-
-// Secret trigger (click 3 times)
-let clickCount = 0;
-const secret = document.getElementById("secretTrigger");
-if (secret) {
-  secret.addEventListener("click", () => {
-    clickCount++;
-    if (clickCount === 3) {
-      alert("You found the hidden love level 💖✨");
-    }
-  });
-      }
-      
+/* Generate hearts continuously */
+setInterval(createBackgroundHeart, 800);
